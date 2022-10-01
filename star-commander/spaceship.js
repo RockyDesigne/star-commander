@@ -2,7 +2,7 @@ import { Projectile } from "./projectile.js";
 
 
 export class SpaceShip {
-    constructor(x, y, game) {
+    constructor(x, y, game, canvasHeight) {
         this.game = game;
         this.x = x;
         this.y = y;
@@ -18,12 +18,13 @@ export class SpaceShip {
         this.reloadTimer = 0;
         this.projectileSpeed = 1.07;
         this.sprite = document.getElementById("ship");
+        this.canvasHeight = canvasHeight;
     }
         
     update(input) {
         //shoot
         if (input.includes("Enter") && this.reloadTimer <= 0) {
-            this.projectiles.push(new Projectile(this.x * this.projectileSpeed, this.y));
+            this.projectiles.push(new Projectile(this.x * this.projectileSpeed, this.y, this.canvasHeight));
             this.reloadTimer = this.timeToReload;
         }
         this.reloadTimer--;

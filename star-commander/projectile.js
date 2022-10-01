@@ -1,16 +1,17 @@
 export class Projectile {
-    constructor(x, y) {
+    constructor(x, y, cavnasHeight) {
         this.x = x;
         this.y = y;
         this.velocity = 5;
         this.width = 5;
         this.height = 10;
         this.markedForDeletion = false;
+        this.cavnasHeight = cavnasHeight;
     }
 
     update() {
         this.y += this.velocity;
-        if (this.x + this.width < 0 || this.y + this.height > 800) this.markedForDeletion = true;
+        if (this.x + this.width < 0 || this.y + this.height > this.canvasHeight) this.markedForDeletion = true;
     }
 
     draw(context) {

@@ -12,7 +12,7 @@ const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 class Game {
-    constructor() {
+    constructor(canvasHeight, canvasWidth) {
         this.enemies = [];
         this.timeToEnemy = Math.random() * 100 + 50;
         this.enemyTimer = 0;
@@ -20,10 +20,13 @@ class Game {
         this.lives = 5;
         this.gameOver = false;
         this.boom = [];
+        this.startingPosition = 0.4;
+        this.canvasHeight = canvasHeight;
+        this.canvasWidth = canvasWidth;
 
         this.background = new Background();
         this.input = new InputHandler(this);
-        this.spaceship = new SpaceShip(canvas.width * 0.5, canvas.height * 0.5, this);
+        this.spaceship = new SpaceShip(this.canvasWidth * this.startingPosition, this.canvasHeight * this.startingPosition, this.canvasHeight);
         this.UI = new UI(this);
     }
     update() {
@@ -74,9 +77,10 @@ class Game {
     }
 }
 
-canvas.width = 500;
+canvas.width = window.innerWidth * 0.5;
+canvas.height = window.innerHeight;
 
-const game = new Game();
+const game = new Game(canvas.height, canvas.width);
 
 const animate = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
