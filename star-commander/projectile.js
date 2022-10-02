@@ -16,6 +16,6 @@ export class Projectile {
 
     draw(context) {
         context.fillRect(this.x, this.y + 50, this.width, this.height);
-        context.fillRect(this.x + 65, this.y + 50, this.width, this.height);
+        context.fillRect(this.x + 68, this.y + 50, this.width, this.height);
     }
 }

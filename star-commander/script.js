@@ -29,8 +29,8 @@ class Game {
         this.spaceship = new SpaceShip(this.canvasWidth * this.startingPosition, this.canvasHeight * this.startingPosition, this.canvasHeight);
         this.UI = new UI(this);
     }
-    update() {
-        this.background.update();
+    update(dt) {
+        this.background.update(dt);
         this.spaceship.update(this.input.keys);
         //add Enemies 
         if (this.enemyTimer <= 0) {
@@ -39,7 +39,7 @@ class Game {
         }
         this.enemyTimer--;
         this.enemies.forEach((enemy) => {
-            enemy.update();
+            enemy.update(dt);
             if (checkForCollision(enemy, this.spaceship)) {
                 this.boom = new CollisionAnimation(this.spaceship.x, this.spaceship.y, this.spaceship.speed);
                 this.boom.update();
@@ -82,11 +82,16 @@ canvas.height = window.innerHeight;
 
 const game = new Game(canvas.height, canvas.width);
 
-const animate = () => {
+let lastTime = 0;
+
+const animate = (timeStamp) => {
+    const dt = timeStamp - lastTime;
+    lastTime = timeStamp;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     canvas.height = window.innerHeight;
-    game.update();
+    game.update(dt);
     game.draw(ctx);
     !game.gameOver && requestAnimationFrame(animate);
 }
-animate();
+animate(0);

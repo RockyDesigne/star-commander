@@ -5,11 +5,20 @@ export class Background {
         this.height = 1024;
         this.y = 0;
         this.x = 0;
-        this.speed = 5;
+        this.speed = 8;
+        this.fps = 60;
+        this.frameInterval = 1000 / this.fps;
+        this.frameTimer = 0;
     }
 
-    update() {
-        this.y <= -this.height ? this.y = 0 : this.y = this.y - this.speed;
+    update(dt) {
+        if (this.frameTimer > this.frameInterval) {
+            this.frameTimer = 0;
+            this.y <= -this.height ? this.y = 0 : this.y = this.y - this.speed;
+        } else {
+            this.frameTimer += dt;
+        }
+        
     }
     draw(context) {
         context.drawImage(this.image, this.x, this.y, this.width, this.height);

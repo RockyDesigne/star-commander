@@ -7,16 +7,23 @@ export class Enemy {
         this.x = x;
         this.y = y;
         this.markedForDeletion = false;
-        this.speed = 8;
+        this.speed = 3;
         this.sprite = document.getElementById("asteroids");
         this.width = 90;
         this.height = 89;
         this.hitpoints = 5;
+        this.fps = 60;
+        this.frameInterval = 1000 / this.fps;
+        this.frameTimer = 0;
     }
 
-    update() {
-        this.y -= this.speed;
-        if (this.y + this.radius < 0) this.markedForDeletion = true;
+    update(dt) {
+        if (this.frameTimer > this.frameInterval) {
+            this.y -= this.speed;
+            if (this.y + this.radius < 0) this.markedForDeletion = true;
+        } else {
+            this.frameTimer += dt;
+        }
     }
 
     draw(context) {
