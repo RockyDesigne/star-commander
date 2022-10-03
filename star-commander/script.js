@@ -77,7 +77,7 @@ class Game {
     }
 }
 
-canvas.width = window.innerWidth * 0.5;
+canvas.width = window.innerWidth * 0.3;
 canvas.height = window.innerHeight;
 
 const game = new Game(canvas.height, canvas.width);
