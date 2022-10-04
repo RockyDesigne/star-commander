@@ -18,11 +18,12 @@ class Game {
         this.enemyTimer = 0;
         this.score = 0;
         this.lives = 5;
-        this.gameOver = false;
+        this.gameOver = true;
         this.boom = [];
         this.startingPosition = 0.4;
         this.canvasHeight = canvasHeight;
         this.canvasWidth = canvasWidth;
+        this.btn = document.getElementById('start');
 
         this.background = new Background();
         this.input = new InputHandler(this);
@@ -74,6 +75,10 @@ class Game {
             enemy.draw(context);
         });
         this.UI.draw(context);
+    }
+    restart() {
+        this.gameOver = false;
+        this.lives = 5;
     }
 }
 
