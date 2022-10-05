@@ -3,7 +3,6 @@ export class UI {
         this.game = game;
         this.fontSize = 30;
         this.fontFamily = "Helvetica";
-        this.btn = document.getElementById('start');
     }
 
     draw(context) {
@@ -25,19 +24,15 @@ export class UI {
         if (this.game.gameOver) {
             context.textAlign = "center";
             context.font = this.fontSize * 1 + "px " + this.fontFamily;
-            this.btn.style.display = 'block';
-            this.btn.addEventListener('click', function () {
-                //to do
-            }); 
             if (this.game.score > 5) {
-                context.fillText("Final Score: " + this.game.score, 250, 300);
+                context.fillText("Final Score: " + this.game.score, 230, 300);
                 context.font = this.fontSize * 1 + "px " + this.fontFamily;
-                context.fillText("Good Job, Commander!", 250, 250);
+                context.fillText("Good Job, Commander!", 230, 250);
                 context.font = this.fontSize * 1 + "px " + this.fontFamily;
             } else {
-                context.fillText("Final Score: " + this.game.score, 250, 300);
+                context.fillText("Final Score: " + this.game.score, 230, 300);
                 context.font = this.fontSize * 1 + "px " + this.fontFamily;
-                context.fillText("Tough luck, Commander!", 250, 250);
+                context.fillText("Tough luck, Commander!", 230, 250);
                 context.font = this.fontSize * 1 + "px " + this.fontFamily;
             }
         }

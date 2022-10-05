@@ -18,7 +18,7 @@ class Game {
         this.enemyTimer = 0;
         this.score = 0;
         this.lives = 5;
-        this.gameOver = true;
+        this.gameOver = false;
         this.boom = [];
         this.startingPosition = 0.4;
         this.canvasHeight = canvasHeight;
@@ -79,6 +79,11 @@ class Game {
     restart() {
         this.gameOver = false;
         this.lives = 5;
+        this.score = 0;
+        this.spaceship.x = this.canvasWidth * this.startingPosition; //reset spaceship x pos
+        this.spaceship.y = this.canvasHeight * this.startingPosition; // reset spaceship y pos
+        this.enemies = [];
+        this.projectile = []; 
     }
 }
 
@@ -86,6 +91,12 @@ canvas.width = window.innerWidth * 0.3;
 canvas.height = window.innerHeight;
 
 const game = new Game(canvas.height, canvas.width);
+const btn = document.getElementById("mybtn");
+btn.addEventListener("click", () => {
+    //game.restart();
+    game.restart();
+    animate(0);
+});
 
 let lastTime = 0;
 
@@ -97,6 +108,11 @@ const animate = (timeStamp) => {
     canvas.height = window.innerHeight;
     game.update(dt);
     game.draw(ctx);
-    !game.gameOver && requestAnimationFrame(animate);
+    if(game.gameOver == false) {
+        requestAnimationFrame(animate);
+        btn.style.display = 'none';
+    } else {
+        btn.style.display = 'block';
+    }
 }
 animate(0);
