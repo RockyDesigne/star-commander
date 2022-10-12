@@ -7,6 +7,8 @@ export class UI {
 
     draw(context) {
         context.save();
+        //add cooldown bar
+        context.fillStyle = "green";
         context.shadowOffsetX = 2;
         context.shadowOffsetY = 2;
         context.shadowColor = "white";

@@ -14,7 +14,7 @@ export class SpaceShip {
         this.angle = 0;
         this.projectiles = [];
         this.maxProjectiles = 50;
-        this.timeToReload = 10;
+        this.timeToReload = 20;
         this.reloadTimer = 0;
         this.projectileSpeed = 1.07;
         this.sprite = document.getElementById("ship");
@@ -22,6 +22,13 @@ export class SpaceShip {
     }
         
     update(input) {
+        //make sure spaceship doesn't go out of bounds
+        if (this.x < 0) this.x = 0;
+        if (this.x + this.width > this.game.gameWidth) this.x = this.game.gameWidth - this.width;
+        // to do
+        if (this.y < 0) this.y = 0;
+        if (this.y + this.height > this.canvasHeight - this.height) this.y = this.canvasHeight;
+
         //shoot
         if (input.includes("Enter") && this.reloadTimer <= 0) {
             this.projectiles.push(new Projectile(this.x * this.projectileSpeed, this.y, this.canvasHeight));

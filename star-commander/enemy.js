@@ -1,7 +1,7 @@
 export class Enemy {
     constructor(x, y) {
         this.color = "white";
-        this.radius = 40;
+        this.radius = 50;
         this.angleBegin = 0;
         this.angleEnd = 2;
         this.x = x;
@@ -27,8 +27,8 @@ export class Enemy {
     }
 
     draw(context) {
-        context.save();
-        /*context.fillStyle = this.color;
+        /*context.save();
+        context.fillStyle = this.color;
         context.strokeStyle = this.color;
         context.beginPath();
         context.arc(this.x + this.width * 0.5, this.y + this.height * 0.5
