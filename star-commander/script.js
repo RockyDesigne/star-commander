@@ -7,6 +7,7 @@ import { checkForCollision } from "./utils.js";
 import { UI } from "./UI.js";
 import { Background } from "./background.js";
 import { CollisionAnimation } from "./collisionAnimation.js";
+import { Particle, Effect } from "./particles.js";
 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
@@ -25,12 +26,14 @@ class Game {
         this.canvasWidth = canvasWidth;
         this.btn = document.getElementById('start');
 
+        this.effect = new Effect(canvas.width, canvas.height);
         this.background = new Background();
         this.input = new InputHandler(this);
         this.spaceship = new SpaceShip(this.canvasWidth * this.startingPosition, this.canvasHeight * this.startingPosition, this.canvasHeight);
         this.UI = new UI(this);
     }
     update(dt) {
+        this.effect.update();
         this.background.update(dt);
         this.spaceship.update(this.input.keys);
         //add Enemies 
@@ -41,6 +44,7 @@ class Game {
         this.enemyTimer--;
         this.enemies.forEach((enemy) => {
             enemy.update(dt);
+            if (enemy.y + enemy.radius < 0) --this.score;
             if (checkForCollision(enemy, this.spaceship)) {
                 this.boom = new CollisionAnimation(this.spaceship.x, this.spaceship.y, this.spaceship.speed);
                 this.boom.update();
@@ -67,7 +71,7 @@ class Game {
     }
 
     draw(context) {
-
+        this.effect.draw(context);
         this.background.draw(context);
         this.spaceship.draw(context);
         //draw enemies
@@ -91,9 +95,9 @@ canvas.width = window.innerWidth * 0.3;
 canvas.height = window.innerHeight;
 
 const game = new Game(canvas.height, canvas.width);
+game.effect.init(ctx);
 const btn = document.getElementById("mybtn");
 btn.addEventListener("click", () => {
-    //game.restart();
     game.restart();
     animate(0);
 });
