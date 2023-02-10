@@ -1,6 +1,7 @@
 # star-commander
 
 An arcade style game where you are a pilot in charge of defending earth from incoming asteroids. Shoot them all down and save the planet!
+You can try it here: https://rockydesigne.github.io/star-commander/star-commander/
 
 ## Features
 
