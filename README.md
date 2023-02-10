@@ -7,6 +7,11 @@ An arcade style game where you are a pilot in charge of defending earth from inc
 - Intuitive gameplay: Control your spaceship and shoot asteroids with ease.
 - Thrilling action: Defend the earth from an endless barrage of incoming asteroids.
 
+## Screenshot
+
+![arcade shooter](./screenshots/ss1.png)
+
+
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/RockyDesigne/star-commander.git`
