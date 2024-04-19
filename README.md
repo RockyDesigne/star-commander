@@ -10,7 +10,7 @@ You can try it here: https://rockydesigne.github.io/star-commander/star-commande
 
 ## Screenshot
 
-![arcade shooter](./screenshots/HanSpace_ss.png)
+![arcade shooter](./screenshots/ss1.png)
 
 
 ## Installation
